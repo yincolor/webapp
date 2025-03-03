@@ -18,6 +18,7 @@ struct WebApp{
     WebKitWebView *webview; 
     uint8_t is_debug; 
     uint8_t is_window_closed; 
+
 };
 typedef struct WebApp WebApp; 
 
@@ -26,7 +27,15 @@ typedef struct WebApp WebApp;
  * app_name 应遵循 app.<开发者代号>.<应用名称> 如: app.buildername.sxcample_app
  */
 WebApp *webapp_create(char *app_name, uint32_t version, char *title, char *uri, uint8_t is_debug);
+/**
+ * 应用启动
+ * 当启动后，会阻塞
+ */
 void webapp_run(WebApp *webapp); 
+/**
+ * 切换窗口全屏状态
+ */
+void webapp_switch_fullscreen(WebApp *webapp); 
 void webapp_set_icon_by_svg_bytes(WebApp *webapp, uint8_t *icon_file_bytes, uint64_t icon_file_size);
 
 static GtkWindow *window_create(char *title, uint16_t width, uint16_t height); 
@@ -34,6 +43,6 @@ static WebKitWebView *webview_create(char *uri, uint8_t is_debug);
 
 
 static void on_window_destroy(GtkWidget* close_window, gpointer arg);
-// static void on_gtk_app_activate(GApplication *app, gpointer user_data); 
+static void on_window_key_press(GtkEventControllerKey *controller, guint keyval, guint keycode, GdkModifierType state, gpointer user_data); 
 
 #endif
