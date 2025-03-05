@@ -36,7 +36,14 @@ void webapp_run(WebApp *webapp);
  * 切换窗口全屏状态
  */
 void webapp_switch_fullscreen(WebApp *webapp); 
+/**
+ * 设置svg图片数据为应用窗口图标
+ */
 void webapp_set_icon_by_svg_bytes(WebApp *webapp, uint8_t *icon_file_bytes, uint64_t icon_file_size);
+/** 设置webview使用的Http请求头的User-Agent属性 
+ * 默认为：Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0
+*/
+void webapp_set_user_agent(WebApp *webapp, char *user_agent);
 
 static GtkWindow *window_create(char *title, uint16_t width, uint16_t height); 
 static WebKitWebView *webview_create(char *uri, uint8_t is_debug);

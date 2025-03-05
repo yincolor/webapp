@@ -71,6 +71,12 @@ void webapp_set_icon_by_svg_bytes(WebApp *webapp, uint8_t *svg_bytes, uint64_t s
     icon_file_name = NULL; 
 }
 
+
+void webapp_set_user_agent(WebApp *webapp, char *user_agent){
+    WebKitSettings *setting = webkit_web_view_get_settings(webapp->webview); 
+    webkit_settings_set_user_agent(setting, user_agent); 
+}
+
 static GtkWindow *window_create(char *title, uint16_t width, uint16_t height){
     // printf("开始创建GtkWindow组件\n");
     GtkWidget *window_widget = gtk_window_new(); 
@@ -95,7 +101,7 @@ static WebKitWebView *webview_create(char *uri, uint8_t is_debug){
     if(is_debug > 0){
         webkit_settings_set_enable_developer_extras(setting, true); 
     }
-    webkit_settings_set_user_agent(setting, "Mozilla/5.0 (X11; Linux x86_64; rv:135.0) Gecko/20100101 Firefox/135.0 WebApp/0");
+    webkit_settings_set_user_agent(setting, "Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0");
 
     webkit_web_view_load_uri(_webview_instance, uri);
     

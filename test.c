@@ -8,6 +8,7 @@ int main(int argc, char const *argv[])
     size_t icon_byte_size = strlen(icon_svg_byte);
     webapp_set_icon_by_svg_bytes(app, icon_svg_byte, icon_byte_size+1);
     // webapp_switch_fullscreen(app); 
+    webapp_set_user_agent(app, "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36");
     webapp_run(app); 
     return 0;
 }
